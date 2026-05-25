@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DHDigital - Direitos Humanos Digitais</title>
+  <!-- SEO Tags -->
+  <meta name="description" content="Aplicativo acadêmico e extensionista para a conscientização de direitos digitais, registro de denúncias, pesquisa e análises estatísticas.">
+  <meta name="keywords" content="Direitos Humanos, Direitos Digitais, LGPD, Marco Civil, ODS 16, Denúncia Digital, Pesquisa Científica">
+  <meta name="author" content="Observatório Acadêmico de Direitos Digitais">
+  <!-- PWA Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DHDigital">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!-- Notificação Toast Global -->
+  <div id="global-toast" class="toast-notification">
+    <div id="toast-icon-container" class="toast-icon"></div>
+    <div id="toast-text">Notificação do sistema</div>
+  </div>
+  <!-- CONTAINER DO SIMULADOR (Para testes em Computadores / Desktops) -->
+  <div class="app-simulator-container">
+    <!-- Controles do Simulador -->
+    <div class="simulator-controls">
+      <button id="sim-btn-ios" class="simulator-btn active">Visual iOS</button>
+      <button id="sim-btn-android" class="simulator-btn">Visual Android</button>
+      <span style="color: var(--text-muted); font-size: 13px; align-self: center; margin-left: 10px;">
+        (No celular, o app roda em tela cheia)
+      </span>
+    </div>
+    <!-- Moldura Física do Aparelho Celular -->
+    <div id="device-frame-el" class="device-frame">
+      <div class="device-notch"></div>
+      <div class="device-home-bar"></div>
+      <!-- SISTEMA OPERACIONAL DO APP -->
+      <div class="app-container">
+        <!-- Barra de Status do Sistema (Hora e Ícones) -->
+        <div class="app-status-bar">
+          <div id="status-bar-time" style="font-family: var(--font-heading);">09:41</div>
+          <div class="status-bar-icons">
+            <svg style="width: 14px; height: 14px;" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-1.2 0-2.4.2-3.6.7L18.7 14c.5-1.2.7-2.4.7-3.6 0-4.1-3.3-7.4-7.4-7.4zm-9 9c0 4.1 3.3 7.4 7.4 7.4 1.2 0 2.4-.2 3.6-.7L3.3 8.3c-.5 1.2-.7 2.4-.7 3.7zm15.1 4.7L6.3 4.9C7.9 4.3 9.9 4 12 4c4.4 0 8 3.6 8 8 0 2.1-.3 4.1-1.9 5.7z" /></svg>
+            <svg style="width: 14px; height: 14px;" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21l-12-12c2.8-2.8 6.5-4.2 12-4.2s9.2 1.4 12 4.2l-12 12zm0-18c-4.4 0-7.5 1.1-10 3.5l10 10 10-10c-2.5-2.4-5.6-3.5-10-3.5z" /></svg>
+            <svg style="width: 14px; height: 14px;" fill="currentColor" viewBox="0 0 24 24"><path d="M17 5H3a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+          </div>
+        </div>
+        <!-- Cabeçalho de Navegação Principal -->
+        <header class="app-header">
+          <h1 id="header-main-title" class="app-title">DHDigital</h1>
+          <div class="header-actions">
+            <button id="theme-toggle-btn" class="btn-icon" onclick="App.toggleTheme()" aria-label="Alternar Tema">
+            </button>
+          </div>
+        </header>
+        <!-- Área de Telas e Conteúdo (Scrollable) -->
+        <main class="app-content">
+          <!-- 1. TELA: HOME & EDUCAÇÃO -->
+          <section id="screen-home" class="app-screen active">
+            <h2 class="screen-title">Direitos Digitais</h2>
+            <p class="screen-subtitle">Explore conceitos fundamentais, legislações nacionais e fortaleça sua consciência cidadã na internet.</p>
+            <div class="glass-card card-primary" style="margin-bottom: 24px; cursor: pointer;" onclick="App.navigateTo('screen-ods')">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <span style="font-size:10px; font-weight:700; color:var(--secondary); text-transform:uppercase; letter-spacing:1px;">Prática Acadêmica</span>
+                  <h3 style="font-family: var(--font-heading); font-size:16px; margin: 4px 0 6px 0; font-weight:800;">ODS 16: Paz e Justiça Digital</h3>
+                  <p style="font-size:12px; color:var(--text-secondary); line-height:1.4;">Veja como nosso app se alinha com os Objetivos da ONU.</p>
+                </div>
+                <div style="background:var(--secondary); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;">
+                  <svg style="width:18px; height:18px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </div>
+            </div>
+            <h3 style="font-family: var(--font-heading); font-size:16px; font-weight:700; margin-bottom:12px;">Eixos Temáticos de Estudo</h3>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">Selecione um dos temas abaixo para acessar o conteúdo pedagógico detalhado e embasamento jurídico:</p>
+            <div class="topic-grid">
+              <div class="topic-card" onclick="App.openEducationalModal('privacy')">
+                <div class="topic-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                </div>
+                <div class="topic-title">Privacidade e Dados</div>
+              </div>
+              <div class="topic-card" onclick="App.openEducationalModal('expression')">
+                <div class="topic-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                </div>
+                <div class="topic-title">Liberdade de Expressão</div>
+              </div>
+              <div class="topic-card" onclick="App.openEducationalModal('inclusion')">
+                <div class="topic-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                </div>
+                <div class="topic-title">Inclusão Digital</div>
+              </div>
+              <div class="topic-card" onclick="App.openEducationalModal('hate_speech')">
+                <div class="topic-icon">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                </div>
+                <div class="topic-title">Combate ao Ódio</div>
+              </div>
+            </div>
+            <div class="glass-card" style="margin-top: 24px;">
+              <h3 style="font-family: var(--font-heading); font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                <svg style="width:18px; height:18px; stroke:var(--primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                Marco Legal Brasileiro
+              </h3>
+              <p style="font-size:12px; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">
+                Nossa constituição e leis específicas garantem deveres e proteções no ambiente virtual:
+              </p>
+              <div style="font-size: 12px; display:flex; flex-direction:column; gap:8px;">
+                <div style="padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border-left: 3px solid var(--primary);">
+                  <strong>Constituição Federal (Art. 5º):</strong> Garante a intimidade, privacidade e sigilo das comunicações.
+                </div>
+                <div style="padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border-left: 3px solid var(--secondary);">
+                  <strong>Marco Civil da Internet (Lei 12.965/14):</strong> Define os direitos e deveres dos usuários e provedores de internet no Brasil.
+                </div>
+                <div style="padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; border-left: 3px solid var(--color-success);">
+                  <strong>LGPD (Lei 13.709/18):</strong> Protege a privacidade ao regulamentar o tratamento de dados pessoais por empresas e órgãos públicos.
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 2. TELA: QUIZ DE CENÁRIOS CRÍTICOS -->
+          <section id="screen-quiz" class="app-screen">
+            <h2 class="screen-title">Cenários Críticos</h2>
+            <p class="screen-subtitle">Aplique o pensamento crítico e computacional para resolver dilemas reais de direitos na web.</p>
+            <div class="survey-progress-bar">
+              <div id="quiz-progress-fill" class="survey-progress-fill"></div>
+            </div>
+            <div id="quiz-question-container" class="glass-card">
+            </div>
+          </section>
+          <!-- 3. TELA: QUESTIONÁRIO ANÔNIMO -->
+          <section id="screen-survey" class="app-screen">
+            <h2 class="screen-title">Pesquisa Ética</h2>
+            <p class="screen-subtitle">Ajude o observatório universitário a mapear violações e letramento digital de forma 100% anônima.</p>
+            <div class="survey-progress-bar">
+              <div id="survey-progress-fill" class="survey-progress-fill"></div>
+            </div>
+            <div id="survey-card-container" class="glass-card">
+            </div>
+          </section>
+          <!-- 4. TELA: CANAL DE DENÚNCIAS -->
+          <section id="screen-reports" class="app-screen">
+            <h2 class="screen-title">Denúncia Digital</h2>
+            <p class="screen-subtitle">Registre violações de direitos humanos na internet e acompanhe o andamento das providências.</p>
+            <div class="report-tabs">
+              <button id="tab-btn-register" class="report-tab-btn active" onclick="ReportManager.switchTab('register')">Registrar Caso</button>
+              <button id="tab-btn-list" class="report-tab-btn" onclick="ReportManager.switchTab('my-reports')">Minhas Denúncias</button>
+            </div>
+            <div id="report-register-form">
+              <form id="report-form-el" onsubmit="ReportManager.submitReport(event)">
+                <div class="form-group">
+                  <label for="rep-category" class="form-label">Categoria da Violação *</label>
+                  <select id="rep-category" class="form-control" required>
+                    <option value="" disabled selected>Selecione uma opção...</option>
+                    <option value="hate_speech">Discurso de Ódio / Discriminação</option>
+                    <option value="privacy_breach">Vazamento de Dados / Invasão de Privacidade</option>
+                    <option value="cyberbullying">Cyberbullying / Ofensa / Difamação</option>
+                    <option value="fake_news">Desinformação / Campanhas de Ódio Coletivo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="rep-desc" class="form-label">Descrição dos Fatos *</label>
+                  <textarea id="rep-desc" class="form-control" placeholder="Descreva o ocorrido com o máximo de detalhes possível, preservando dados confidenciais de terceiros..." required></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Anexar Captura de Tela ou Evidência (Opcional)</label>
+                  <input type="file" id="rep-file" class="form-control" accept="image/*" onchange="ReportManager.handleFileUpload(event)">
+                  <div id="upload-preview" class="file-upload-preview">
+                    Nenhum arquivo anexado (Máx 2MB)
+                  </div>
+                </div>
+                <div class="form-group" style="margin: 20px 0;">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" id="rep-anonymous" checked onchange="ReportManager.toggleAnonymous()">
+                    <div class="checkbox-box"></div>
+                    <span>Desejo enviar de forma 100% ANÔNIMA.</span>
+                  </label>
+                </div>
+                <div id="contact-info-group" class="form-group" style="display: none;">
+                  <label for="rep-contact" class="form-label">Seu E-mail ou Telefone de Contato *</label>
+                  <input type="text" id="rep-contact" class="form-control" placeholder="contato@exemplo.com">
+                </div>
+                <div style="font-size:11px; color:var(--text-muted); line-height:1.4; margin-bottom:20px;">
+                  * Ao enviar, o caso será registrado localmente no banco do aplicativo. Os casos são analisados de forma simulada pela comissão acadêmica de extensão digital.
+                </div>
+                <button type="submit" class="btn-primary">
+                  Enviar Registro de Violação
+                </button>
+              </form>
+            </div>
+            <div id="reports-list-container" style="display: none;">
+            </div>
+          </section>
+          <!-- 5. TELA: DASHBOARD DINÂMICO -->
+          <section id="screen-dashboard" class="app-screen">
+            <h2 class="screen-title">Painel Analítico</h2>
+            <p class="screen-subtitle">Dados de pesquisa acadêmica e denúncias do dispositivo agregados em tempo real.</p>
+            <div class="dashboard-grid">
+              <div class="dashboard-stat-row">
+                <div class="stat-card">
+                  <div id="kpi-total-reports" class="stat-number">0</div>
+                  <div class="stat-label">Denúncias Feitas</div>
+                </div>
+                <div class="stat-card">
+                  <div id="kpi-total-surveys" class="stat-number">0</div>
+                  <div class="stat-label">Respostas Pesquisa</div>
+                </div>
+              </div>
+              <div class="dashboard-stat-row">
+                <div class="stat-card">
+                  <div id="kpi-resolved-reports" class="stat-number">0</div>
+                  <div class="stat-label">Casos Resolvidos</div>
+                </div>
+                <div class="stat-card">
+                  <div id="kpi-knowledge-rate" class="stat-number">0%</div>
+                  <div class="stat-label">Letramento LGPD</div>
+                </div>
+              </div>
+              <div class="glass-card">
+                <h3 style="font-family: var(--font-heading); font-size:14px; font-weight:700;">Tipos de Violações Registradas</h3>
+                <p style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">Proporção de categorias no canal de denúncia</p>
+                <div id="violations-chart-container" class="chart-container">
+                </div>
+              </div>
+              <div class="glass-card">
+                <h3 style="font-family: var(--font-heading); font-size:14px; font-weight:700;">Participantes por Faixa Etária</h3>
+                <p style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">Respostas agregadas da pesquisa acadêmica</p>
+                <div id="age-chart-container" class="chart-container">
+                </div>
+              </div>
+              <div class="glass-card">
+                <h3 style="font-family: var(--font-heading); font-size:14px; font-weight:700; margin-bottom:4px;">Nível de Confiança nas Denúncias</h3>
+                <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px;">Segurança declarada ao utilizar portais de denúncia online</p>
+                <div id="confidence-chart-container">
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 6. TELA: DETALHE ODS 16 -->
+          <section id="screen-ods" class="app-screen">
+            <div class="ods-header">
+              <div class="ods-icon-box">16</div>
+              <div class="ods-title-text">
+                <span style="font-size:12px; color:var(--text-secondary); text-transform:uppercase; font-weight:500;">Objetivo 16 da ONU</span>
+                <h3 style="color:#00689d;">Paz, Justiça e Instituições Eficazes</h3>
+              </div>
+            </div>
+            <div class="glass-card" style="line-height:1.5; font-size:13px; color:var(--text-secondary);">
+              <p style="margin-bottom:12px; color:var(--text-color); font-weight:500;">
+                Como este aplicativo atua em prol da ODS 16 no contexto digital?
+              </p>
+              <p style="margin-bottom:12px;">
+                Os direitos humanos não terminam quando nos conectamos. A internet tornou-se a nova arena da esfera pública e, portanto, das violações de direitos.
+              </p>
+              <p style="margin-bottom:12px;">
+                Ao oferecer uma ferramenta prática de <strong>registro de denúncias</strong> com acompanhamento de status e um <strong>dashboard transparente</strong> com estatísticas da pesquisa acadêmica, o aplicativo promove:
+              </p>
+              <div class="ods-meta-list" style="margin-top:16px;">
+                <div class="ods-meta-item">
+                  <span class="ods-meta-num">16.3</span>
+                  <div>
+                    <strong>Promover o Estado de Direito:</strong> Garantir que as leis digitais (Marco Civil, LGPD) sejam conhecidas e aplicadas igualmente para proteger todos na rede.
+                  </div>
+                </div>
+                <div class="ods-meta-item">
+                  <span class="ods-meta-num">16.6</span>
+                  <div>
+                    <strong>Desenvolver Instituições Eficazes:</strong> Mostrar como bancos de dados transparentes e dashboards de dados abertos criam responsabilidade e clareza social.
+                  </div>
+                </div>
+                <div class="ods-meta-item">
+                  <span class="ods-meta-num">16.10</span>
+                  <div>
+                    <strong>Garantir o Acesso à Informação:</strong> Proteger liberdades fundamentais digitais, conscientizar contra censura arbitrária e combater discursos discriminatórios estruturais.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn-primary" onclick="App.navigateTo('screen-home')" style="margin-top:20px;">
+              Voltar ao Início
+            </button>
+          </section>
+        </main>
+        <!-- Barra de Abas Inferior -->
+        <nav class="app-nav-bar">
+          <a class="nav-item active" data-target="screen-home">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Início</span>
+          </a>
+          <a class="nav-item" data-target="screen-quiz">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <span>Cenários</span>
+          </a>
+          <a class="nav-item" data-target="screen-survey">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Pesquisa</span>
+          </a>
+          <a class="nav-item" data-target="screen-reports">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01" />
+            </svg>
+            <span>Denúncia</span>
+          </a>
+          <a class="nav-item" data-target="screen-dashboard">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h2a2 2 0 002-2zm0 0h5a2 2 0 002-2v-3a2 2 0 00-2-2h-5m5 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+            </svg>
+            <span>Painel</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL DE EIXO TEMÁTICO EDUCACIONAL -->
+  <div id="educational-modal-overlay" class="modal-overlay" onclick="App.closeEducationalModal()">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="educational-modal-title" style="font-family: var(--font-heading); font-size:18px; font-weight:700;">Título do Eixo</h3>
+        <button class="modal-close-btn" onclick="App.closeEducationalModal()" aria-label="Fechar Modal">
+          <svg style="width:16px; height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <div id="educational-modal-body" class="modal-body">
+      </div>
+    </div>
+  </div>
+  <!-- Scripts JavaScript do App -->
+  <script src="js/db.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/survey.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
